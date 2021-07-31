@@ -11,10 +11,7 @@ driver = webdriver.Chrome(PATH)
 
 driver.get("https://lorenzinibernardo.wixsite.com/bezini")
 
-with open("RELATORIO_QA_PORTIFOLIO.txt", "a") as fh:
-    titulo_pag = driver.title
-    fh.write("TITULO DA PAGINA:   " + titulo_pag + "\n")
-    fh.write("\n")
+
 
 print(driver.title)
 espaco = "    "
@@ -43,6 +40,10 @@ try:
             )
             titulos = main.find_elements_by_tag_name("span")
             textos = main.find_elements_by_tag_name("h5")
+            with open("RELATORIO_QA_PORTIFOLIO.txt", "a") as fh:
+                titulo_pag = driver.title
+                fh.write("TITULO DA PAGINA:   " + titulo_pag.encode('utf-8') + "\n")
+                fh.write("\n")
 
             for titulo in titulos:
                 titulo_trab = titulo.text
