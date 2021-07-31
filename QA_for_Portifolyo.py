@@ -10,10 +10,23 @@ PATH = "/Users/bernardolorenzini/Documents/Python_Projects/chromedriver"
 driver = webdriver.Chrome(PATH)
 
 driver.get("https://lorenzinibernardo.wixsite.com/bezini")
+
+with open("RELATORIO_QA_PORTIFOLIO.txt", "a") as fh:
+    titulo_pag = driver.title
+    fh.write("TITULO DA PAGINA:   " + titulo_pag + "\n")
+    fh.write("\n")
+
 print(driver.title)
+espaco = "    "
 
 search_portifolio = driver.find_element_by_id("DrpDwnMn02label")
 search_portifolio.click()
+
+def border_msg(msg):
+    row = len(msg)
+    h = ''.join(['+'] + ['-' *row] + ['+'])
+    result= h + '\n'"|"+msg+"|"'\n' + h
+    print(result)
 
 try:
     poa_cena = WebDriverWait(driver, 10).until(
@@ -29,14 +42,30 @@ try:
                 EC.presence_of_element_located((By.ID, "Containerez0sx"))
             )
             titulos = main.find_elements_by_tag_name("span")
+            textos = main.find_elements_by_tag_name("h5")
+
             for titulo in titulos:
-                print(titulo.text)
+                titulo_trab = titulo.text
+                texto = textos.pop(0)
+                texto_trab = texto.text
+
+                with open("RELATORIO_QA_PORTIFOLIO.txt", "a") as fh:
+                    fh.write(espaco + " --> TITULO DO TRABALHO:   " + titulo_trab.encode('utf-8') + "\n")
+                    fh.write(espaco + espaco + espaco + "|\n")
+                    fh.write(espaco + espaco + espaco + "|--> TESTO DO TRABALHO:   " + texto_trab.encode('utf-8') + "\n")
+                    fh.write("\n")
+                    fh.write("\n")
+
+                print(espaco + "--> TITULO DO TRABALHO:   " + titulo_trab.encode('utf-8') + "\n")
+                print(espaco + espaco + espaco + "|\n")
+                print(espaco + espaco + espaco + "|--> TEXTO DO TRABALHO:   " + texto_trab.encode('utf-8') + "\n")
+
         finally:
-            time.sleep(5)
+            time.sleep(2)
     finally:
-        time.sleep(5)
+        time.sleep(2)
 finally:
-    time.sleep(5)
+    time.sleep(2)
     driver.quit()
 
 
