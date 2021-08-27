@@ -8,7 +8,8 @@ db = mysql.connector.connect(
 )
 
 mycursor = db.cursor()
-#CRIANDO DATABASE TESTE  ---- mycursor.execute("CREATE DATABASE condominio_turin")
+#CRIANDO DATABASE TESTE  ----
+# mycursor.execute("CREATE DATABASE condominio_turin DEFAULT CHARACTER SET utf8 DEFAULT COLLATE utf8_general_ci )
 
 # CRIANDO TABELA PESSOAS ----- mycursor.execute("CREATE TABLE Person (name VARCHAR(50), age smallint UNSIGNED, personID int PRIMARY KEY AUTO_INCREMENT)")
 
