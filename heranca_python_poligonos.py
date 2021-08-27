@@ -1,4 +1,5 @@
 class Polygon:
+
     def __init__(self, regular):
         self.regular = regular
 
@@ -13,8 +14,10 @@ class Polygon:
         print("Perimetro: ", self.get_perimetro())
 
 
+
 class Retangulo(Polygon):
     def __init__(self, base, altura):
+
         self.base = base
         self.altura = altura
 
@@ -27,6 +30,7 @@ class Retangulo(Polygon):
 
 class TrianguloI(Polygon):
     def __init__(self, altura, largura, base):
+
         self.base = base
         self.altura = altura
         self.largura = largura
@@ -41,6 +45,7 @@ class TrianguloI(Polygon):
 class Circulo(Polygon):
     pi = 3.14
     def __init__(self, raio):
+
         self.raio = raio
 
     def get_area(self):

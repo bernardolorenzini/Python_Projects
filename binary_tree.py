@@ -1,68 +1,60 @@
-class Node:
-    def __init__(self, data=None):
-        self.data = data
-        self.right = None
-        self.left = None
+
+class Polygon:
+    def __init__(self, regular):
+        self.regular = regular
+
+    def get_area(self):
+        pass
+
+    def get_perimetro(self):
+        pass
+
+    def print_shape(self):
+        print("Area: ", self.get_area())
+        print("Perimetro: ", self.get_perimetro())
 
 
-class BinaryTree:
+class Retangulo(Polygon):
+    def __init__(self, base, altura, regular):
+        self.base = base
+        self.altura = altura
 
-    def __init__(self):
-        self.root = Node(None)
+    def get_area(self):
+        return self.base * self.altura
 
-    def insert(self, valor):
-        if self.root.data is None:
-            self.root = Node(valor)
-            return
-
-        if self.root.data == valor:
-            print("numero ja dentro da arvore")
-            return
-
-        if valor < self.root.data:
-            if self.root.left:
-                self.root.left.insert(valor)
-                return
-            self.root.left = Node(valor)
-            return
-
-        if self.root.right:
-            self.root.right.insert(valor)
-            return
-        self.root.right = Node(valor)
+    def get_perimetro(self):
+        return (self.base * 2 + self.altura * 2)
 
 
+class TrianguloI(Polygon):
+    def __init__(self, altura, largura, base, regular):
+        self.base = base
+        self.altura = altura
+        self.largura = largura
 
-    def printTree(self):
-        if self.root is None:
-            print("Arvore Vazia")
-        else:
-            self._printTree(self.root)
+    def get_area(self):
+        return (self.base * self.altura) / 2
 
-    def _printTree(self, node):
-        if node.left is None:
-            if node.right is None:
-                print(node.data)
-            else:
-                self._printTree(node.right)
-        else:
-            self._printTree(node.left)
+    def get_perimetro(self):
+        return (self.base + self.largura + self.largura)
 
 
-    def preorder(self, vals):
-        if self.val is not None:
-            vals.append(self.val)
-        if self.left is not None:
-            self.left.preorder(vals)
-        if self.right is not None:
-            self.right.preorder(vals)
-        return vals
+class Circulo(Polygon):
+    pi = 3.14
+    def __init__(self, raio, regular):
+        self.raio = raio
+
+    def get_area(self):
+        return (self.raio * self.raio) * Circulo.pi
+
+    def get_perimetro(self):
+        return 2 * 3.14 * self.raio
 
 
-tree = BinaryTree()
+tri = TrianguloI(21, 8, 10, True)
+ret = Retangulo(5, 4, True)
+circ = Circulo(9, True)
 
-tree.insert(3)
-tree.insert(5)
-tree.insert(1)
-tree.printTree()
-
+polig = Polygon(True)
+polig = tri
+polig.print_shape()
